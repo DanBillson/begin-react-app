@@ -13,13 +13,9 @@ test('Start', async t => {
 test('get /api', async t => {
   t.plan(2)
   try {
-    let result = await tiny.get({url: `${base}/api`})
+    let result = await tiny.get({ url: `${base}/api` })
     t.ok(result, 'Got API response', console.log(result.body))
-    t.equal(
-      result.body.message,
-      'Hello from your Begin API!',
-      'API response should match.'
-    )
+    t.equal(result.body.message, 'Hello world!', 'API response should match.')
   } catch (err) {
     t.fail(err)
   }
@@ -28,8 +24,7 @@ test('get /api', async t => {
 test('End', async t => {
   t.plan(1)
   end()
-  tiny.get({url: base},
-  function win (err, result) {
+  tiny.get({ url: base }, function win(err, result) {
     if (err) {
       t.equal(err.code, 'ECONNREFUSED', 'Sandbox succssfully shut down')
     } else {
